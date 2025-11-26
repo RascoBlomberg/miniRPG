@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src ="script.js"></script>
+</head>
+<body>
+    <a href="index.html">
+        <img src="assets\Loading.png" style="width:100vw; height:100vh;">
+    </a>
+
+<script>
+setTimeout(function() {
+const ref = document.referrer;
+
+if (ref.includes("index.html")) {
+    window.location.href = "shop.html";
+    } 
+else if (ref.includes("shop.html")) {
+    window.location.href = "index.html";
+    } 
+else {
+    window.location.href = "index.html";
+    }
+
+}, 5000);
+</script>
+</body>
+</html>
