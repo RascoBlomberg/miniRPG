@@ -1,0 +1,54 @@
+.box {
+  width: 100px;
+  height: 50px;
+  background: yellow;
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 100px;
+  right: 770px;
+}
+.box1 {
+  width: 100px;
+  height: 50px;
+  background: yellow;
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 100px;
+  right: 660px;
+}
+.box2 {
+  width: 100px;
+  height: 50px;
+  background: yellow;
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 100px;
+  right: 550px;
+}
+.box3 {
+  width: 100px;
+  height: 50px;
+  background: yellow;
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 100px;
+  right: 440px;
+}
+
+.box.expanded {
+  transform: scaleY(2);
+}
+
+.box1.expanded {
+  transform: scaleY(2);
+}
+.box2.expanded {
+  transform: scaleY(2);
+}
+.box3.expanded {
+  transform: scaleY(2);
+}

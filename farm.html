@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="farm.css">
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <button id="btn">Expandera</button>
+
+<script>
+const btn = document.getElementById("btn");
+const box = document.querySelector(".box");
+const box1 = document.querySelector(".box1");
+const box2 = document.querySelector(".box2");
+const box3 = document.querySelector(".box3");
+
+btn.addEventListener("click", () => {
+    box.classList.add("expanded");
+    box1.classList.add("expanded");
+    box2.classList.add("expanded");
+    box3.classList.add("expanded");
+});
+/*
+function setupBox(box) {
+    let lastMoveTime = 0;
+
+    document.addEventListener("mousedown", () => {
+        const now = performance.now();
+        box.addEventListener("mousemove", () => {
+            lastMoveTime = performance.now();
+                const now = performance.now();
+            if (now - lastMoveTime <= 100) {
+                console.log("mousemove hände nyligen!");
+                box.classList.remove("expanded");
+            } else {
+                console.log("mousemove var FÖR LÄNGE sedan.");
+            }
+        })
+    });
+
+}
+
+*/
+
+let isMouseDown = false;
+
+
+document.addEventListener("mousedown", () => {
+    isMouseDown = true;
+});
+
+document.addEventListener("mouseup", () => {
+    isMouseDown = false;
+});
+
+
+function setupBox(box) {
+    let lastMoveTime = 0;
+
+    
+    box.addEventListener("mousemove", () => {
+        lastMoveTime = performance.now();
+
+        
+        if (isMouseDown) {
+            const now = performance.now();
+            if (now - lastMoveTime <= 100) {
+                console.log(`mousemove + mousedown på ${box.className}`);
+                box.classList.toggle("expanded");
+            }
+        }
+    });
+
+   
+
+}
+
+
+const boxes = document.querySelectorAll(".box, .box1, .box2, .box3");
+
+boxes.forEach(box => setupBox(box));
+
+
+
+</script>
+</body>
+</html>
