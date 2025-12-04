@@ -11,21 +11,49 @@
     <div class="box1"></div>
     <div class="box2"></div>
     <div class="box3"></div>
-    <button id="btn">Expandera</button>
-
+    <button onclick="growPlant()">Expandera</button>
+    <button onclick="MoneyUp()">Money!!!</button>
+    <div id="myBox" class="moneyBox"></div>
 <script>
+
+let moneyValue = 10;
+
 const btn = document.getElementById("btn");
+const btn1 = document.getElementById("btn1");
 const box = document.querySelector(".box");
 const box1 = document.querySelector(".box1");
 const box2 = document.querySelector(".box2");
 const box3 = document.querySelector(".box3");
 
+document.getElementById("myBox").textContent = moneyValue;
+/*
 btn.addEventListener("click", () => {
     box.classList.add("expanded");
     box1.classList.add("expanded");
     box2.classList.add("expanded");
     box3.classList.add("expanded");
-});
+}); */
+
+function growPlant(){
+    if (moneyValue >= 10){
+        box.classList.add("expanded");
+        box1.classList.add("expanded");
+        box2.classList.add("expanded");
+        box3.classList.add("expanded");
+        moneyValue = moneyValue - 10;
+        document.getElementById("myBox").textContent = moneyValue;
+        return moneyValue;
+    } else {
+        alert("inte tillräckligt med pengar");
+    }
+}
+
+function MoneyUp() {
+    moneyValue++;
+    document.getElementById("myBox").textContent = moneyValue;
+    return moneyValue;
+}
+
 /*
 function setupBox(box) {
     let lastMoveTime = 0;
@@ -47,6 +75,8 @@ function setupBox(box) {
 }
 
 */
+
+
 
 let isMouseDown = false;
 
@@ -72,7 +102,10 @@ function setupBox(box) {
             const now = performance.now();
             if (now - lastMoveTime <= 100) {
                 console.log(`mousemove + mousedown på ${box.className}`);
-                box.classList.toggle("expanded");
+                box.classList.remove("expanded");
+                document.getElementById("myBox").textContent = moneyValue;
+                moneyValue += 1;
+                return moneyValue;
             }
         }
     });

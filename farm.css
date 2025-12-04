@@ -39,6 +39,20 @@
   right: 440px;
 }
 
+.moneyBox {
+  width: 50px;
+  height: 50px;
+  background: brown;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 400px;
+  right: 440px;
+}
+
 .box.expanded {
   transform: scaleY(2);
 }
