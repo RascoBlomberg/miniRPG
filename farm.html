@@ -74,7 +74,7 @@ nightTimeCycle.forEach(src => {
 });
 
 function growPlant(){
-    if (moneyValue >= 10){
+    if (moneyValue >= 20){
         for (let i = 0; i < moneyValue; i++) {
             if (!plantGrowNumb[i]) plantGrowNumb[i] = [];
             plantGrowNumb[i].push("box"+i)
@@ -167,10 +167,10 @@ function setupBox(box) {
             const now = performance.now();
             if (now - lastMoveTime <= 100) {
                 console.log(`mousemove + mousedown på ${box.className}`);
+                if (box.classList.length > 1) {moneyValue += 5;}
                 box.classList.remove("expanded");
                 box.style.backgroundColor = "yellow";
                 document.getElementById("myBox").textContent = moneyValue;
-                moneyValue += 1;
                 return moneyValue;
             }
         }
