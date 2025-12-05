@@ -8,8 +8,8 @@
     <script src ="script.js"></script>
 </head>
 <body>
-    <a href="index.html">
-        <img src="assets\Loading.png" style="width:100vw; height:100vh;">
+    <a href="">
+        <img src="assets/Loading.png" style="width:100vw; height:100vh;">
     </a>
 
 <script>
@@ -28,13 +28,13 @@ setTimeout(function() {
 const ref = document.referrer;
 
 if (fromPage === "startpage" && toPage === "shop") {
-    window.location.href = "shop.html";
+    window.location.href = "assets/shop.html";
     } 
 else if (fromPage === "startpage" && toPage === "farm") {
-    window.location.href = "farm.html";
+    window.location.href = "assets/farm.html";
     } 
 else {
-    window.location.href = "index.html";
+    window.location.href = "assets/index.html";
     console.log("fel")
     }
 
