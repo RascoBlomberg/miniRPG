@@ -220,6 +220,13 @@ function renderFarm() {
     }
     start.innerHTML = "";
 
+    const bg = document.createElement("img");
+    bg.src = "assets/sol1.png";
+    bg.style.width = "100vw";
+    bg.style.height = "100vh";
+    bg.style.position = "absolute";
+    bg.style.zIndex = "-1";
+
     const title = document.createElement("h1");
     title.textContent = "Farmen";
 
@@ -243,6 +250,12 @@ function renderFarm() {
     const signBoard = document.createElement("div");
     signBoard.className = "sign-board";
 
+    const signLegLeft = document.createElement("div");
+    signLegLeft.className = "sign-leg left";
+
+    const signLegRight = document.createElement("div");
+    signLegRight.className = "sign-leg right";
+
     const moneyBtn = document.createElement("button");
     moneyBtn.textContent = "Få pengar (+1)";
     moneyBtn.addEventListener("click", () => {
@@ -254,8 +267,9 @@ function renderFarm() {
     returnBtn.textContent = "Gå hem";
     returnBtn.addEventListener("click", () => alert("Hem-knapp fungerar här"));
 
-    signBoard.append(moneyBtn, returnBtn);
-    sign.appendChild(signBoard);
+    signBoard.append(moneyBtn, returnBtn, plantBtn);
+    sign.append( signLegLeft, signLegRight, signBoard);
+    
 
     const grid = document.createElement("div");
     grid.className = "farm-grid";
@@ -265,5 +279,5 @@ function renderFarm() {
         grid.appendChild(box);
     });
 
-    start.append(title, info, moneyDisplay, plantBtn, grid, sign);
+    start.append(bg, title, info, moneyDisplay, grid, sign);
 }

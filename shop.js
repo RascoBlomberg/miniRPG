@@ -33,7 +33,7 @@ function LSsaveProgress() {
 LSloadProgress();
 
 const dialogVisited = progress[2];
-const moneyValue = progress[0];
+
 
 let messages = dialogVisited ? [...messages2] : [...messages1];
 
@@ -75,3 +75,72 @@ nextBtn.addEventListener("click", () => {
         window.location.href = "loading.html";
     }
 });
+
+
+function renderShop() {
+    const start = document.getElementById("start");
+    if (!start) {
+        console.warn("Ingen #start div finns i HTML");
+        return;
+    }
+    start.innerHTML = "";
+
+    const bg = document.createElement("img");
+    bg.src = "assets/shopREF.jpg";
+    bg.style.width = "100vw";
+    bg.style.height = "100vh";
+    bg.style.position = "absolute";
+    bg.style.zIndex = "-1";
+
+    const dialogBox = document.createElement("div");
+    dialogBox.className = "dialog-box";
+    dialogBox.id = "dialogBox";
+
+    const dialogText = document.createElement("p");
+    dialogText.id = "dialogText";
+
+    const nextBtn = document.createElement("button");
+    nextBtn.id = "nextBtn";
+    nextBtn.textContent = "Nästa";
+
+    dialogBox.append(dialogText, nextBtn);
+    start.append(bg, dialogBox);
+
+    LSloadProgress();
+
+    const dialogVisited = progress[2];
+    let moneyValue = progress[0];
+
+    let messages = dialogVisited ? [...messages2] : [...messages1];
+    let currentMessage = 0;
+
+    dialogText.textContent = messages[currentMessage];
+
+    nextBtn.addEventListener("click", () => {
+        currentMessage++;
+
+        if (dialogVisited && currentMessage === 2) {
+            if (moneyValue < 200) {
+                messages[2] = `Följande belopp har du: ${moneyValue}, inte tillräckligt`;
+                dialogText.textContent = messages[2];
+
+                setTimeout(() => {
+                    renderFarm();
+                }, 2000);
+                return;
+            }
+        }
+
+        if (dialogVisited && currentMessage === 2) {
+            messages[2] = `${moneyValue}, ah perfekt`;
+        }
+
+        if (currentMessage < messages.length) {
+            dialogText.textContent = messages[currentMessage];
+        } else {
+            progress[2] = true;
+            LSsaveProgress();
+            renderFarm();
+        }
+    });
+}
