@@ -1,90 +1,23 @@
-.box8 {
-  width: 100px;
-  height: 50px;
+.box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8, .box9, .box10, .box0 {
+  width: 7vw;
+  height: 5vh;
   background: yellow;
   transform-origin: bottom;
   transition: transform 0.3s ease;
   position: absolute;
-  top: 700px;
-  right: 1210px;
+  top: 70vh;
 }
-
-.box1 {
-  width: 100px;
-  height: 50px;
-  background: yellow;
-  transform-origin: bottom;
-  transition: transform 0.3s ease;
-  position: absolute;
-  top: 700px;
-  right: 1100px;
-}
-
-.box2 {
-  width: 100px;
-  height: 50px;
-  background: yellow;
-  transform-origin: bottom;
-  transition: transform 0.3s ease;
-  position: absolute;
-  top: 700px;
-  right: 990px;
-}
-
-.box3 {
-  width: 100px;
-  height: 50px;
-  background: yellow;
-  transform-origin: bottom;
-  transition: transform 0.3s ease;
-  position: absolute;
-  top: 700px;
-  right: 880px;
-}
-
-.box4 {
-  width: 100px;
-  height: 50px;
-  background: yellow;
-  transform-origin: bottom;
-  transition: transform 0.3s ease;
-  position: absolute;
-  top: 700px;
-  right: 770px;
-}
-
-.box5 {
-  width: 100px;
-  height: 50px;
-  background: yellow;
-  transform-origin: bottom;
-  transition: transform 0.3s ease;
-  position: absolute;
-  top: 700px;
-  right: 660px;
-}
-
-.box6 {
-  width: 100px;
-  height: 50px;
-  background: yellow;
-  transform-origin: bottom;
-  transition: transform 0.3s ease;
-  position: absolute;
-  top: 700px;
-  right: 550px;
-}
-
-.box7 {
-  width: 100px;
-  height: 50px;
-  background: yellow;
-  transform-origin: bottom;
-  transition: transform 0.3s ease;
-  position: absolute;
-  top: 700px;
-  right: 440px;
-}
+.box10 { right: 71vw; }
+.box8 { right: 64vw; }
+.box1 { right: 57vw; }
+.box2 { right: 50vw; }
+.box3 { right: 43vw; }
+.box4 { right: 36vw; }
+.box5 { right: 29vw; }
+.box6 { right: 22vw; }
+.box7 { right: 15vw; }
+.box9 { right: 08vw; }
+.box0 { right: 71vw; }
 
 .moneyBox {
   width: 50px;

@@ -2,18 +2,7 @@ const plantCost = 2;
 const harvestGain = 5;
 const numPlants = 8;
 
-let plants = Array(numPlants).fill(false);
 let isMouseDown = false;
-
-const btn = document.getElementById("btn");
-const btn1 = document.getElementById("btn1");
-const box1 = document.querySelector(".box1");
-const box2 = document.querySelector(".box2");
-const box3 = document.querySelector(".box3");
-const box4 = document.querySelector(".box4");
-const box5 = document.querySelector(".box5");
-const box6 = document.querySelector(".box6");
-const box7 = document.querySelector(".box7");
 
 const colorCycle = [
     "#FFFF66",
@@ -48,8 +37,7 @@ function growPlant() {
                 box.style.height = "50px";
                 box.style.backgroundColor = "yellow";
                 box.style.position = "absolute";
-                box.style.top = "700px";
-                box.style.right = `${1210 - i * 110}px`;
+                
                 box.style.transformOrigin = "bottom";
                 box.style.transition = "transform 0.3s ease";
 
@@ -103,14 +91,6 @@ function growPlant() {
     }
 }
 
-function MoneyUp() {
-    moneyValue++;
-    document.getElementById("myBox").textContent = moneyValue;
-    return moneyValue;
-}
-
-
-
 document.addEventListener("mousedown", () => {
     isMouseDown = true;
 });
@@ -119,36 +99,7 @@ document.addEventListener("mouseup", () => {
     isMouseDown = false;
 });
 
-
-function setupBox(box) {
-    let lastMoveTime = 0;
-
-
-    box.addEventListener("mousemove", () => {
-        lastMoveTime = performance.now();
-
-
-        if (isMouseDown) {
-            const now = performance.now();
-            if (now - lastMoveTime <= 100) {
-                console.log(`mousemove + mousedown på ${box.className}`);
-                if (box.classList.length > 1) { moneyValue += 5; }
-                box.classList.remove("expanded");
-                box.style.backgroundColor = "yellow";
-                document.getElementById("myBox").textContent = moneyValue;
-                return moneyValue;
-            }
-        }
-    });
-
-
-
-}
-
-
 const boxes = document.querySelectorAll(".box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8");
-
-boxes.forEach(box => setupBox(box));
 
 function returnHome() {
     progress[0] = moneyValue;
@@ -237,14 +188,14 @@ function renderFarm() {
 
     start.append(bg, title, info, moneyDisplay, grid, sign);
 
-    if(progress[3] == false){
+    if (progress[3] == false) {
         createDialog({
-        dialogKey: "farm_intro",
-        onFinish: () => {
-            progress[3] = true;
-            LSsaveProgress();
-        }
-    });
+            dialogKey: "farm_intro",
+            onFinish: () => {
+                progress[3] = true;
+                LSsaveProgress();
+            }
+        });
     };
 
 }
@@ -255,7 +206,7 @@ function updateMoneyDisplay() {
 }
 
 
-// progress element 
+// progress element
 // 0 - moneyValue
 // 1 - start turtorial panel
 // 2 - shop turtorial panel 1
