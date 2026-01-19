@@ -13,17 +13,17 @@ function renderStart() {
     const bg = document.createElement("div");
     bg.className = "start-bg";
 
-    // Sätt bakgrunden via style
     bg.style.backgroundImage = 'url("assets/start.png")';
-    bg.style.backgroundSize = "cover";
+    bg.style.backgroundSize = "contain";
     bg.style.backgroundPosition = "center";
     bg.style.backgroundRepeat = "no-repeat";
     bg.style.width = "100vw";
-    bg.style.height = "100vh";
-    bg.style.position = "absolute";
+    bg.style.height = "95vh";
+    bg.style.position = "center";
     bg.style.top = "0";
     bg.style.left = "0";
     bg.style.zIndex = "-1";
+    bg.style.backgroundColor = "#7B3F00";
 
     start.appendChild(bg);
 

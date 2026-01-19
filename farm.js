@@ -5,8 +5,6 @@ const numPlants = 8;
 let plants = Array(numPlants).fill(false);
 let isMouseDown = false;
 
-//let moneyValue = 20;
-
 const btn = document.getElementById("btn");
 const btn1 = document.getElementById("btn1");
 const box1 = document.querySelector(".box1");
@@ -16,17 +14,6 @@ const box4 = document.querySelector(".box4");
 const box5 = document.querySelector(".box5");
 const box6 = document.querySelector(".box6");
 const box7 = document.querySelector(".box7");
-
-//document.getElementById("myBox").textContent = moneyValue;
-/*
-btn.addEventListener("click", () => {
-    box.classList.add("expanded");
-    box1.classList.add("expanded");
-    box2.classList.add("expanded");
-    box3.classList.add("expanded");
-}); 
-*/
-//varje planta borde kosta 2mV för att växa
 
 const colorCycle = [
     "#FFFF66",
@@ -122,31 +109,6 @@ function MoneyUp() {
     return moneyValue;
 }
 
-/*
-function setupBox(box) {
-    let lastMoveTime = 0;
-
-    document.addEventListener("mousedown", () => {
-        const now = performance.now();
-        box.addEventListener("mousemove", () => {
-            lastMoveTime = performance.now();
-                const now = performance.now();
-            if (now - lastMoveTime <= 100) {
-                console.log("mousemove hände nyligen!");
-                box.classList.remove("expanded");
-            } else {
-                console.log("mousemove var FÖR LÄNGE sedan.");
-            }
-        })
-    });
-
-}
-*/
-
-
-
-
-//let isMouseDown = false;
 
 
 document.addEventListener("mousedown", () => {
@@ -187,12 +149,6 @@ function setupBox(box) {
 const boxes = document.querySelectorAll(".box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8");
 
 boxes.forEach(box => setupBox(box));
-
-//document.body.style.backgroundImage = 'url("assets/sol1.png")';
-
-
-
-
 
 function returnHome() {
     progress[0] = moneyValue;

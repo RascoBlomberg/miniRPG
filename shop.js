@@ -16,6 +16,7 @@ function LSloadProgress() {
 
 
 function LSsaveProgress() {
+    progress[0] = moneyValue;
     localStorage.progress = JSON.stringify(progress);
 }
 
@@ -64,10 +65,13 @@ function renderShop() {
                 if (index === 3) {
                     if (moneyValue < 200) {
                         dialogTextEl.textContent = `Följande belopp har du: ${moneyValue}, inte tillräckligt. Tillbaka till farmen för dig`;
-                        setTimeout(() => renderFarm(), 10000);
-                        return false;
-                    } else {
+                        setTimeout(() => renderFarm(), 7000);
+                        return false
+                        
+                    }else {
                         dialogTextEl.textContent = `${moneyValue}, ah perfekt`;
+                        setTimeout(() => renderEnd(), 3500);
+                        return false
                     }
                 }
             },
@@ -76,8 +80,8 @@ function renderShop() {
                 if (dialogKey === "shop_return") progress[4] = true;
 
                 LSsaveProgress();
-                if (dialogKey === "shop_first") renderFarm();
-                if (dialogKey === "shop_return"){ if (moneyValue < 200) renderFarm();}
+                if (dialogKey === "shop_first") setTimeout(() => renderFarm(), 3000);
+                if (dialogKey === "shop_return" && moneyValue < 200)renderStart();
             }
         });
     }

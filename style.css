@@ -3,19 +3,7 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    
 }
-
-
-.start-bg {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: 100vw;
-    height: 95vh;
-    background-color: #7b3F0D;
-}
-
 
 .map-button {
     position: absolute;
@@ -38,7 +26,7 @@
 
 .map-button.farm {
     left: 41vw;
-    top: 85vh;
+    top: 86vh;
     width: 14vw;
     height: 10vh;
 /*    background-color: pink; */

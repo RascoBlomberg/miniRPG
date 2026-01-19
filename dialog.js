@@ -71,7 +71,7 @@ function initDialogs() {
         localStorage.setItem("dialogs", JSON.stringify({
             shop_first: [
                 "Hej!",
-                `"Vad kul att se dig här. ${moneyValue}"`,
+                "Vad kul att se dig här.",
                 "Har du 200 pengar?"
             ],
             shop_return: [
