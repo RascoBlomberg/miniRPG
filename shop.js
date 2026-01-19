@@ -65,13 +65,12 @@ function renderShop() {
                 if (index === 3) {
                     if (moneyValue < 200) {
                         dialogTextEl.textContent = `Följande belopp har du: ${moneyValue}, inte tillräckligt. Tillbaka till farmen för dig`;
-                        setTimeout(() => renderFarm(), 7000);
-                        return false
+                        return false;
                         
                     }else {
                         dialogTextEl.textContent = `${moneyValue}, ah perfekt`;
                         setTimeout(() => renderEnd(), 3500);
-                        return false
+                        return false;
                     }
                 }
             },
