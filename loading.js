@@ -7,7 +7,7 @@ function renderEnd() {
 
     start.innerHTML = "";
 
-    const bg = document.createElement("div");
+    const bg = document.createElement("img");
     bg.style.width = "100vw";
     bg.style.height = "100vh";
     bg.style.backgroundImage = 'url("assets/loading.png")';
