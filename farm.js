@@ -50,6 +50,7 @@ nightTimeCycle.forEach(src => {
 });
 
 function growPlant() {
+    const bg = document.getElementById("bg");
     if (moneyValue >= 20) {
         for (let i = 0; i < moneyValue; i++) {
             if (!plantGrowNumb[i]) plantGrowNumb[i] = [];
@@ -74,7 +75,8 @@ function growPlant() {
                         moneyValue += harvestGain;
                         box.classList.remove("expanded");
                         box.style.backgroundColor = "yellow";
-                        updateMoney();
+                        moneyValue += 5;
+                        updateMoneyDisplay();
                     }
                 });
 
@@ -83,6 +85,7 @@ function growPlant() {
             plantGrowNumb[i].push("box" + i)
             if (i == 9) {
                 moneyValue = moneyValue - (i * 2);
+                updateMoneyDisplay();
                 break;
             }
         }
@@ -96,7 +99,7 @@ function growPlant() {
 
         for (let i = 0; i <= 5; i++) {
             setTimeout(() => {
-                document.body.style.backgroundImage = `url("${nightTimeCycle[i]}")`;
+                bg.src = nightTimeCycle[i];
                 plantGrowNumb.forEach(boxArray => {
                     boxArray.forEach(boxClass => {
                         const box = document.querySelector("." + boxClass + ".expanded");
@@ -106,7 +109,7 @@ function growPlant() {
                     });
                 });
             }, 1000 * i);
-            if (i == 6) document.body.style.backgroundImage = 'url("assets/sol1.png")';
+            if (i == 6) bg.src = "assets/sol1.png";
         }
 
 
@@ -208,6 +211,7 @@ function LSloadProgress() {
 
 
 function renderFarm() {
+    LSloadProgress();
     const start = document.getElementById("start");
     if (!start) {
         console.warn("Ingen #start div finns i HTML");
@@ -216,6 +220,7 @@ function renderFarm() {
     start.innerHTML = "";
 
     const bg = document.createElement("img");
+    bg.id = "bg";
     bg.src = "assets/sol1.png";
     bg.style.width = "100vw";
     bg.style.height = "100vh";
@@ -261,8 +266,8 @@ function renderFarm() {
     const returnBtn = document.createElement("button");
     returnBtn.textContent = "Gå hem";
     returnBtn.addEventListener("click", () => {
-        renderStart();
         LSsaveProgress();
+        renderStart();
     });
 
     signBoard.append(moneyBtn, returnBtn, plantBtn);
@@ -294,6 +299,10 @@ function renderFarm() {
 
 }
 
+function updateMoneyDisplay() {
+    const moneyDisplay = document.getElementById("money");
+    if (moneyDisplay) moneyDisplay.textContent = `Pengar: ${moneyValue}`;
+}
 
 
 // progress element 

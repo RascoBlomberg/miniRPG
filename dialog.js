@@ -4,8 +4,8 @@ function LSgetDialogs() {
 
 function createDialog({
     dialogKey,
-    dialogTextEl = null,  // valfritt, skapas om null
-    nextBtnEl = null,     // valfritt, skapas om null
+    dialogTextEl = null,  
+    nextBtnEl = null,     
     onStep,
     onFinish
 }) {
@@ -17,7 +17,6 @@ function createDialog({
         return;
     }
 
-    // --- Skapa elementen om de inte skickats in ---
     if (!dialogTextEl || !nextBtnEl) {
         const start = document.getElementById("start");
         if (!start) {
@@ -39,7 +38,6 @@ function createDialog({
         start.appendChild(dialogBox);
     }
 
-    // --- Dialogflödet ---
     let index = 0;
     dialogTextEl.textContent = messages[index];
 
@@ -78,7 +76,21 @@ function initDialogs() {
                 "Du är tillbaka!",
                 "Redo att handla?",
                 "Låt oss se hur mycket pengar du har."
-            ]
+            ],
+            start_intro: [
+                "Hej och välkommen till fylkes farm.",
+                "Här kan du odla och *Placeholder ta bort inför launch*", /* hehe */
+                "du kan antingen gå till shopen.", /* lyss upp dörren */
+                "eller så kan du bege dig till farmen för att odla lite.", /* lyss up farmen */
+                "Vi kan börja med att checka in i shopen."
+            ],
+            farm_intro: [
+                "Hej och välkomen till farmen",
+                "Här kan du odla gröddor, detta genom att klicka på plantera knappen.",
+                "När man planterar så kostar det 2 mynt pär planta.",
+                "Efter det så får du vänta en dag tills du kan skörda dem.",
+                "Du kan genomföra en skörd när plantan är grön och sen ignom att hålla inne musen och dra över plantan"
+            ],
         }));
     }
 }
