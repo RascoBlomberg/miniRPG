@@ -32,16 +32,16 @@ btn.addEventListener("click", () => {
 //varje planta borde kosta 2mV för att växa
 
 const colorCycle = [
-"#FFFF66",
-"#CCFF66",
-"#99FF66",
-"#66FF66",
-"#33CC33",
+    "#FFFF66",
+    "#CCFF66",
+    "#99FF66",
+    "#66FF66",
+    "#33CC33",
 ];
 
 let plantGrowNumb = [];
-const nightTimeCycle= [
-     "assets/sol2.png", "assets/sol3.png", "assets/moon1.png", "assets/moon2.png", "assets/moon3.png", "assets/sol1.png",
+const nightTimeCycle = [
+    "assets/sol2.png", "assets/sol3.png", "assets/moon1.png", "assets/moon2.png", "assets/moon3.png", "assets/sol1.png",
 ];
 
 nightTimeCycle.forEach(src => {
@@ -49,44 +49,44 @@ nightTimeCycle.forEach(src => {
     img.src = src;
 });
 
-function growPlant(){
-    if (moneyValue >= 20){
+function growPlant() {
+    if (moneyValue >= 20) {
         for (let i = 0; i < moneyValue; i++) {
             if (!plantGrowNumb[i]) plantGrowNumb[i] = [];
 
-            
+
             let boxClass = "box" + i;
             if (!document.querySelector("." + boxClass)) {
-                    const box = document.createElement("div");
-                    box.className = boxClass;
-                    box.style.width = "100px";
-                    box.style.height = "50px";
-                    box.style.backgroundColor = "yellow";
-                    box.style.position = "absolute";
-                    box.style.top = "700px";
-                    box.style.right = `${1210 - i*110}px`;
-                    box.style.transformOrigin = "bottom";
-                    box.style.transition = "transform 0.3s ease";
+                const box = document.createElement("div");
+                box.className = boxClass;
+                box.style.width = "100px";
+                box.style.height = "50px";
+                box.style.backgroundColor = "yellow";
+                box.style.position = "absolute";
+                box.style.top = "700px";
+                box.style.right = `${1210 - i * 110}px`;
+                box.style.transformOrigin = "bottom";
+                box.style.transition = "transform 0.3s ease";
 
-                    
-                    box.addEventListener("mousemove", () => {
-                        if (isMouseDown && box.classList.contains("expanded")) {
-                            moneyValue += harvestGain;
-                            box.classList.remove("expanded");
-                            box.style.backgroundColor = "yellow";
-                            updateMoney();
-                        }
-                    });
 
-                    document.getElementById("start").appendChild(box);
-                }
-            plantGrowNumb[i].push("box"+i)
-            if (i == 9){
-                moneyValue = moneyValue - (i*2);
+                box.addEventListener("mousemove", () => {
+                    if (isMouseDown && box.classList.contains("expanded")) {
+                        moneyValue += harvestGain;
+                        box.classList.remove("expanded");
+                        box.style.backgroundColor = "yellow";
+                        updateMoney();
+                    }
+                });
+
+                document.getElementById("start").appendChild(box);
+            }
+            plantGrowNumb[i].push("box" + i)
+            if (i == 9) {
+                moneyValue = moneyValue - (i * 2);
                 break;
             }
         }
-        
+
         plantGrowNumb.forEach(boxArray => {
             boxArray.forEach(boxClass => {
                 const box = document.querySelector("." + boxClass);
@@ -94,23 +94,23 @@ function growPlant(){
             });
         });
 
-    for (let i = 0; i <= 5; i++) {
-        setTimeout(() => {
-            document.body.style.backgroundImage = `url("${nightTimeCycle[i]}")`;
-            plantGrowNumb.forEach(boxArray => {
-                boxArray.forEach(boxClass => {
-                    const box = document.querySelector("." + boxClass + ".expanded");
-                    if (box) {
-                        box.style.backgroundColor = colorCycle[i];
-                    }
+        for (let i = 0; i <= 5; i++) {
+            setTimeout(() => {
+                document.body.style.backgroundImage = `url("${nightTimeCycle[i]}")`;
+                plantGrowNumb.forEach(boxArray => {
+                    boxArray.forEach(boxClass => {
+                        const box = document.querySelector("." + boxClass + ".expanded");
+                        if (box) {
+                            box.style.backgroundColor = colorCycle[i];
+                        }
+                    });
                 });
-            }); 
-        }, 1000 * i);
-        if (i == 6) document.body.style.backgroundImage = 'url("assets/sol1.png")';
-    }
-    
+            }, 1000 * i);
+            if (i == 6) document.body.style.backgroundImage = 'url("assets/sol1.png")';
+        }
 
-    document.getElementById("myBox").textContent = moneyValue;      
+
+        document.getElementById("myBox").textContent = moneyValue;
     } else {
         alert("inte tillräckligt med pengar");
     }
@@ -161,16 +161,16 @@ document.addEventListener("mouseup", () => {
 function setupBox(box) {
     let lastMoveTime = 0;
 
-    
+
     box.addEventListener("mousemove", () => {
         lastMoveTime = performance.now();
 
-        
+
         if (isMouseDown) {
             const now = performance.now();
             if (now - lastMoveTime <= 100) {
                 console.log(`mousemove + mousedown på ${box.className}`);
-                if (box.classList.length > 1) {moneyValue += 5;}
+                if (box.classList.length > 1) { moneyValue += 5; }
                 box.classList.remove("expanded");
                 box.style.backgroundColor = "yellow";
                 document.getElementById("myBox").textContent = moneyValue;
@@ -179,7 +179,7 @@ function setupBox(box) {
         }
     });
 
-   
+
 
 }
 
@@ -265,11 +265,14 @@ function renderFarm() {
 
     const returnBtn = document.createElement("button");
     returnBtn.textContent = "Gå hem";
-    returnBtn.addEventListener("click", () => alert("Hem-knapp fungerar här"));
+    returnBtn.addEventListener("click", () => {
+        renderStartPage();
+        LSsaveProgress();
+    });
 
     signBoard.append(moneyBtn, returnBtn, plantBtn);
-    sign.append( signLegLeft, signLegRight, signBoard);
-    
+    sign.append(signLegLeft, signLegRight, signBoard);
+
 
     const grid = document.createElement("div");
     grid.className = "farm-grid";

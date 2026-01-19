@@ -1,0 +1,49 @@
+#start {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #7b3F0D;
+}
+
+
+.start-bg {
+    background-image: url("../assets/start.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100vw;
+    height: 95vh;
+}
+
+
+.map-button {
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+.map-button.shop {
+    left: 41vw;
+    top: 62vh;
+    width: 11vw;
+    height: 23vh;
+    border-radius: 50%;
+ /*   background-color: purple; */
+}
+
+
+.map-button.farm {
+    left: 41vw;
+    top: 85vh;
+    width: 14vw;
+    height: 10vh;
+/*    background-color: pink; */
+}
+
+.map-button:hover {
+    border: black 4px solid;
+}
