@@ -8,14 +8,11 @@ function renderEnd() {
     start.innerHTML = "";
 
     const bg = document.createElement("img");
+    bg.id = "bg";
+    bg.src = "assets/Loading.png";
     bg.style.width = "100vw";
     bg.style.height = "100vh";
-    bg.style.backgroundImage = 'url("assets/loading.png")';
-    bg.style.backgroundSize = "cover";
-    bg.style.backgroundPosition = "center";
     bg.style.position = "absolute";
-    bg.style.top = "0";
-    bg.style.left = "0";
     bg.style.zIndex = "-1";
 
     const container = document.createElement("div");
