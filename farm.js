@@ -287,7 +287,6 @@ function renderFarm() {
         onFinish: () => {
             progress[3] = true;
             LSsaveProgress();
-            renderStart();
         }
     });
     };

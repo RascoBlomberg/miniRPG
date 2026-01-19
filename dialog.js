@@ -4,8 +4,8 @@ function LSgetDialogs() {
 
 function createDialog({
     dialogKey,
-    dialogTextEl = null,  
-    nextBtnEl = null,     
+    dialogTextEl = null,
+    nextBtnEl = null,
     onStep,
     onFinish
 }) {
@@ -58,6 +58,8 @@ function createDialog({
         if (index < messages.length) {
             dialogTextEl.textContent = messages[index];
         } else {
+            const dialogBox = dialogTextEl.parentElement;
+            if (dialogBox) dialogBox.remove();
             onFinish?.();
         }
     };
@@ -69,13 +71,14 @@ function initDialogs() {
         localStorage.setItem("dialogs", JSON.stringify({
             shop_first: [
                 "Hej!",
-                "Vad kul att se dig här.",
+                `"Vad kul att se dig här. ${moneyValue}"`,
                 "Har du 200 pengar?"
             ],
             shop_return: [
-                "Du är tillbaka!",
+                "Du är tillbaka! ",
                 "Redo att handla?",
-                "Låt oss se hur mycket pengar du har."
+                "Låt oss se hur mycket pengar du har.",
+                "placeholder"
             ],
             start_intro: [
                 "Hej och välkommen till fylkes farm.",

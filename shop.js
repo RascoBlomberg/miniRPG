@@ -48,7 +48,7 @@ function renderShop() {
     } else if (!progress[4]) {
         dialogKey = "shop_return";
     } else {
-        dialogKey = null;
+        dialogKey = "shop_return";
     }
 
     if (dialogKey) {
@@ -60,16 +60,15 @@ function renderShop() {
 
         createDialog({
             dialogKey: dialogKey,
-            onStep: ({ index, messages, dialogTextEl }) => {
-                if (dialogKey === "shop_first" && index === 2 && moneyValue < 200) {
-                    messages[2] = `Följande belopp har du: ${moneyValue}, inte tillräckligt`;
-                    dialogTextEl.textContent = messages[2];
-
-                    setTimeout(() => renderFarm(), 2000);
-                    return false;
-                }
-                if (dialogKey === "shop_first" && index === 2 && moneyValue >= 200) {
-                    messages[2] = `${moneyValue}, ah perfekt`;
+            onStep: ({ index, dialogTextEl }) => {
+                if (index === 3) {
+                    if (moneyValue < 200) {
+                        dialogTextEl.textContent = `Följande belopp har du: ${moneyValue}, inte tillräckligt. Tillbaka till farmen för dig`;
+                        setTimeout(() => renderFarm(), 10000);
+                        return false;
+                    } else {
+                        dialogTextEl.textContent = `${moneyValue}, ah perfekt`;
+                    }
                 }
             },
             onFinish: () => {
@@ -77,7 +76,8 @@ function renderShop() {
                 if (dialogKey === "shop_return") progress[4] = true;
 
                 LSsaveProgress();
-                renderFarm();
+                if (dialogKey === "shop_first") renderFarm();
+                if (dialogKey === "shop_return"){ if (moneyValue < 200) renderFarm();}
             }
         });
     }
