@@ -1,4 +1,4 @@
-function renderStartPage() {
+function renderStart() {
     const start = document.getElementById("start");
     if (!start) {
         console.warn("Ingen #start div finns i HTML");
@@ -25,8 +25,24 @@ function renderStartPage() {
     });
 
     start.append(bg, shopBtn, farmBtn);
+
+    if(progress[1] == false){
+        createDialog({
+        dialogKey: "shop_first",
+        dialogTextEl: dialogText,
+        nextBtnEl: nextBtn,
+        onFinish: () => {
+            progress[1] = true;
+            LSsaveProgress();
+            renderStart();
+        }
+    });
+    };
+
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-    renderStartPage();
+    LSloadProgress();
+    renderStart();
+    initDialogs();
 });

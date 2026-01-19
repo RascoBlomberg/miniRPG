@@ -3,7 +3,7 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: #7b3F0D;
+    
 }
 
 
@@ -14,6 +14,7 @@
     background-size: contain;
     width: 100vw;
     height: 95vh;
+    background-color: #7b3F0D;
 }
 
 

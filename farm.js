@@ -190,12 +190,7 @@ boxes.forEach(box => setupBox(box));
 
 //document.body.style.backgroundImage = 'url("assets/sol1.png")';
 
-// progress element 
-// 0 - moneyValue
-// 1 - start turtorial panel
-// 2 - shop turtorial panel 1
-// 3 - farm turtorial panel
-// 4 - shop turtorial panel 2
+
 
 
 
@@ -266,7 +261,7 @@ function renderFarm() {
     const returnBtn = document.createElement("button");
     returnBtn.textContent = "Gå hem";
     returnBtn.addEventListener("click", () => {
-        renderStartPage();
+        renderStart();
         LSsaveProgress();
     });
 
@@ -283,4 +278,27 @@ function renderFarm() {
     });
 
     start.append(bg, title, info, moneyDisplay, grid, sign);
+
+    if(progress[3] == false){
+        createDialog({
+        dialogKey: "shop_first",
+        dialogTextEl: dialogText,
+        nextBtnEl: nextBtn,
+        onFinish: () => {
+            progress[3] = true;
+            LSsaveProgress();
+            renderStart();
+        }
+    });
+    };
+
 }
+
+
+
+// progress element 
+// 0 - moneyValue
+// 1 - start turtorial panel
+// 2 - shop turtorial panel 1
+// 3 - farm turtorial panel
+// 4 - shop turtorial panel 2
