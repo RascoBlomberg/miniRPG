@@ -90,7 +90,7 @@ function initDialogs() {
                 "När man planterar så kostar det 2 mynt pär planta.",
                 "Efter det så får du vänta en dag tills du kan skörda dem.",
                 "Du kan genomföra en skörd när plantan är grön och sen ignom att hålla inne musen och dra över plantan"
-            ],
+            ]
         }));
     }
 }

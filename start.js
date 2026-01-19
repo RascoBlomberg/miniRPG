@@ -1,10 +1,11 @@
 function renderStart() {
+    LSloadProgress();
     const start = document.getElementById("start");
     if (!start) {
         console.warn("Ingen #start div finns i HTML");
         return;
     }
-
+    
     start.innerHTML = "";
 
     const bg = document.createElement("div");
@@ -28,21 +29,14 @@ function renderStart() {
 
     if(progress[1] == false){
         createDialog({
-        dialogKey: "shop_first",
-        dialogTextEl: dialogText,
-        nextBtnEl: nextBtn,
+        dialogKey: "start_intro",
         onFinish: () => {
             progress[1] = true;
             LSsaveProgress();
-            renderStart();
+            
         }
     });
     };
 
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-    LSloadProgress();
-    renderStart();
-    initDialogs();
-});

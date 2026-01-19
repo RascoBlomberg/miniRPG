@@ -1,81 +1,26 @@
-const messages1 = [
-    "Halt! För att komma in i butiken behöver du betala ett arvode på 200 guldmynt",
-    "Hmmmm, verkar som du inte har tillräckligt",
-    "Gå ner till farmen och odla lite och kom tillbaka när du har råd.",
-    "Hej då!",
-];
-
-const messages2 = [
-    "Ah du är tillbaka",
-    "Få se nu, har du tillräckligt med dig?",
-    "195, 196, 197, 198, 199, 200, ah perfekt",
-    "Varsågod vidare",
-];
-
 // Progress[ ]
 // 0 - moneyValue
 // 1 - start tutorial panel
 // 2 - shop tutorial panel 1
 // 3 - farm tutorial panel
 // 4 - shop tutorial panel 2
-let progress = [0, false, false, false, false];
 
 function LSloadProgress() {
-    if (localStorage.progress) {
-        progress = JSON.parse(localStorage.progress);
+    if (localStorage.getItem("progress")) {
+        progress = JSON.parse(localStorage.getItem("progress"));
+    } else {
+        progress = [20, false, false, false, false]; // default värden
+        localStorage.setItem("progress", JSON.stringify(progress));
     }
 }
+
 
 function LSsaveProgress() {
     localStorage.progress = JSON.stringify(progress);
 }
 
 LSloadProgress();
-
-const dialogVisited = progress[2];
-
-
-let messages = dialogVisited ? [...messages2] : [...messages1];
-
-let currentMessage = 0;
-
-const dialogText = document.getElementById("dialogText");
-const nextBtn = document.getElementById("nextBtn");
-
-dialogText.textContent = messages[currentMessage];
-
-nextBtn.addEventListener("click", () => {
-
-    currentMessage++;
-
-
-    if (dialogVisited && currentMessage === 2) {
-        if (moneyValue < 200) {
-            messages[2] = `Följande belopp har du: ${moneyValue}, inte tillräckligt`;
-
-            dialogText.textContent = messages[2];
-
-            setTimeout(() => {
-                window.location.href = "loading.html";
-            }, 2000);
-
-            return;
-        }
-    }
-
-    if (dialogVisited && currentMessage === 2) {
-        messages[2] = `${moneyValue}, ah perfekt`;
-    }
-
-    if (currentMessage < messages.length) {
-        dialogText.textContent = messages[currentMessage];
-    } else {
-        progress[2] = true;
-        LSsaveProgress();
-        window.location.href = "loading.html";
-    }
-});
-
+let moneyValue = progress[0];
 
 function renderShop() {
     const start = document.getElementById("start");
@@ -92,55 +37,48 @@ function renderShop() {
     bg.style.position = "absolute";
     bg.style.zIndex = "-1";
 
-    const dialogBox = document.createElement("div");
-    dialogBox.className = "dialog-box";
-    dialogBox.id = "dialogBox";
-
-    const dialogText = document.createElement("p");
-    dialogText.id = "dialogText";
-
-    const nextBtn = document.createElement("button");
-    nextBtn.id = "nextBtn";
-    nextBtn.textContent = "Nästa";
-
-    dialogBox.append(dialogText, nextBtn);
-    start.append(bg, dialogBox);
+    start.append(bg);
 
     LSloadProgress();
 
-    const dialogVisited = progress[2];
-    let moneyValue = progress[0];
 
-    let messages = dialogVisited ? [...messages2] : [...messages1];
-    let currentMessage = 0;
+    let dialogKey;
+    if (!progress[2]) {
+        dialogKey = "shop_first";
+    } else if (!progress[4]) {
+        dialogKey = "shop_return";
+    } else {
+        dialogKey = null;
+    }
 
-    dialogText.textContent = messages[currentMessage];
+    if (dialogKey) {
+        const start = document.getElementById("start");
+        if (!start) {
+            console.warn("Ingen #start div finns i HTML");
+            return;
+        }
 
-    nextBtn.addEventListener("click", () => {
-        currentMessage++;
+        createDialog({
+            dialogKey: dialogKey,
+            onStep: ({ index, messages, dialogTextEl }) => {
+                if (dialogKey === "shop_first" && index === 2 && moneyValue < 200) {
+                    messages[2] = `Följande belopp har du: ${moneyValue}, inte tillräckligt`;
+                    dialogTextEl.textContent = messages[2];
 
-        if (dialogVisited && currentMessage === 2) {
-            if (moneyValue < 200) {
-                messages[2] = `Följande belopp har du: ${moneyValue}, inte tillräckligt`;
-                dialogText.textContent = messages[2];
+                    setTimeout(() => renderFarm(), 2000);
+                    return false;
+                }
+                if (dialogKey === "shop_first" && index === 2 && moneyValue >= 200) {
+                    messages[2] = `${moneyValue}, ah perfekt`;
+                }
+            },
+            onFinish: () => {
+                if (dialogKey === "shop_first") progress[2] = true;
+                if (dialogKey === "shop_return") progress[4] = true;
 
-                setTimeout(() => {
-                    renderFarm();
-                }, 2000);
-                return;
+                LSsaveProgress();
+                renderFarm();
             }
-        }
-
-        if (dialogVisited && currentMessage === 2) {
-            messages[2] = `${moneyValue}, ah perfekt`;
-        }
-
-        if (currentMessage < messages.length) {
-            dialogText.textContent = messages[currentMessage];
-        } else {
-            progress[2] = true;
-            LSsaveProgress();
-            renderFarm();
-        }
-    });
+        });
+    }
 }

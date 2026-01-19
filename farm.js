@@ -1,12 +1,9 @@
-let moneyValue = 20;
 const plantCost = 2;
 const harvestGain = 5;
 const numPlants = 8;
 
 let plants = Array(numPlants).fill(false);
 let isMouseDown = false;
-
-window.addEventListener("DOMContentLoaded", LSloadProgress);
 
 //let moneyValue = 20;
 
@@ -286,9 +283,7 @@ function renderFarm() {
 
     if(progress[3] == false){
         createDialog({
-        dialogKey: "shop_first",
-        dialogTextEl: dialogText,
-        nextBtnEl: nextBtn,
+        dialogKey: "farm_intro",
         onFinish: () => {
             progress[3] = true;
             LSsaveProgress();
