@@ -5,11 +5,28 @@ function renderStart() {
         console.warn("Ingen #start div finns i HTML");
         return;
     }
-    
+
     start.innerHTML = "";
+
+
 
     const bg = document.createElement("div");
     bg.className = "start-bg";
+
+    // Sätt bakgrunden via style
+    bg.style.backgroundImage = 'url("assets/start.png")';
+    bg.style.backgroundSize = "cover";
+    bg.style.backgroundPosition = "center";
+    bg.style.backgroundRepeat = "no-repeat";
+    bg.style.width = "100vw";
+    bg.style.height = "100vh";
+    bg.style.position = "absolute";
+    bg.style.top = "0";
+    bg.style.left = "0";
+    bg.style.zIndex = "-1";
+
+    start.appendChild(bg);
+
 
     const shopBtn = document.createElement("button");
     shopBtn.className = "map-button shop";
@@ -25,17 +42,27 @@ function renderStart() {
         renderFarm();
     });
 
-    start.append(bg, shopBtn, farmBtn);
+    start.append(shopBtn, farmBtn);
 
-    if(progress[1] == false){
+    if (progress[1] == false) {
         createDialog({
-        dialogKey: "start_intro",
-        onFinish: () => {
-            progress[1] = true;
-            LSsaveProgress();
-            
-        }
-    });
+            dialogKey: "start_intro",
+            onStep: ({ index }) => {
+                if (index == 2) {
+                    shopBtn.style.border = "5px solid green";
+                    setTimeout(() => shopBtn.style.border = "", 2000);
+                }
+                if (index == 3) {
+                    farmBtn.style.border = "5px solid green";
+                    setTimeout(() => farmBtn.style.border = "", 2000);
+                }
+            },
+            onFinish: () => {
+                progress[1] = true;
+                LSsaveProgress();
+
+            }
+        });
     };
 
 }
